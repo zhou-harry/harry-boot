@@ -1,0 +1,14 @@
+# Project exclude paths
+/harry-boot-api/target/
+/harry-boot-base/harry-boot-base-bpm/target/
+/harry-boot-base/harry-boot-base-common/target/
+/harry-boot-base/harry-boot-base-db/target/
+/harry-boot-base/harry-boot-base-excel/target/
+/harry-boot-base/harry-boot-base-mail/target/
+/harry-boot-base/harry-boot-base-quartz/target/
+/harry-boot-base/harry-boot-base-security/security-app/target/
+/harry-boot-base/harry-boot-base-security/security-core/target/
+/harry-boot-base/harry-boot-base-security/security-web/target/
+/harry-boot-base/harry-boot-base-swagger/target/
+/harry-boot-gataway/target/
+/harry-boot-web/target/

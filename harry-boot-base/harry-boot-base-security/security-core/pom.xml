@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>harry-boot-base-security</artifactId>
+    <groupId>com.harry</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>security-core</artifactId>
+
+  <dependencies>
+    <!-- spring-session -->
+    <dependency>
+      <groupId>org.springframework.session</groupId>
+      <artifactId>spring-session-data-redis</artifactId>
+      <version>1.3.1.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-redis</artifactId>
+    </dependency>
+    <!--oauth2-->
+    <dependency>
+      <groupId>org.springframework.security.oauth</groupId>
+      <artifactId>spring-security-oauth2</artifactId>
+      <version>${security-oauth2.version}</version>
+    </dependency>
+    <!-- social -->
+    <dependency>
+      <groupId>org.springframework.social</groupId>
+      <artifactId>spring-social-config</artifactId>
+      <version>${spring-social.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.social</groupId>
+      <artifactId>spring-social-core</artifactId>
+      <version>${spring-social.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.social</groupId>
+      <artifactId>spring-social-security</artifactId>
+      <version>${spring-social.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.social</groupId>
+      <artifactId>spring-social-web</artifactId>
+      <version>${spring-social.version}</version>
+    </dependency>
+    <!-- 依赖 Database API -->
+    <dependency>
+      <groupId>com.harry</groupId>
+      <artifactId>harry-boot-base-db</artifactId>
+      <version>${parent.version}</version>
+    </dependency>
+    <!-- 依赖 Common API -->
+    <dependency>
+      <groupId>com.harry</groupId>
+      <artifactId>harry-boot-base-common</artifactId>
+      <version>${parent.version}</version>
+    </dependency>
+
+  </dependencies>
+
+</project>

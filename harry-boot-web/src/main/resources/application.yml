@@ -1,0 +1,82 @@
+server:
+  port: 80
+spring:
+  redis:
+    host: 192.168.148.131
+  datasource:
+    druid:
+      stat-view-servlet:
+        enabled: true
+        loginUsername: admin
+        loginPassword: 123456
+    dynamic:
+      primary: master
+      druid:
+        initial-size: 5
+        max-active: 8
+        min-idle: 3
+        max-wait: 1000
+        validation-query: 'select 1'
+      datasource:
+        master:
+          url: jdbc:mysql://192.168.148.131:3306/harry?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true
+          username: root
+          password: Abcd-1234
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          type: com.zaxxer.hikari.HikariDataSource #Hikaricp
+        slave:
+          url: jdbc:mysql://192.168.148.131:3306/db_harry?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true
+          username: root
+          password: Abcd-1234
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          type: com.alibaba.druid.pool.DruidDataSource #Druid
+
+#Mybatis
+mybatis-plus:
+  config-location: classpath:/mybatis/mybatis-config.xml
+
+logging:
+  level:
+    com.baomidou: debug
+
+knife4j:
+  # 开启增强配置
+  enable: true
+  # 开启Swagger的Basic认证功能,默认是false
+  basic:
+    enable: true
+    # Basic认证用户名
+    username: admin
+    # Basic认证密码
+    password: 123456
+
+security:
+  base:
+    enabled: true
+  user:
+    name: admin
+    password: 123456
+harry:
+  base:
+    security:
+      oauth2:
+        storeType: jwt
+      browser:
+        loginType: REDIRECT
+        signOutUrl: /signOut.html
+      social:
+        open: false
+    datasource:
+      mapperLocation: com.harry.web.domain.mapper
+    swagger:
+      title: HARRY BOOT
+      description: 微服务脚手架
+      version: v1.0.0
+      termsOfServiceUrl: http://localhost
+      base-Package: com.harry.web.domain.rest
+      authorization:
+        name: BearerToken
+        authServers: http://localhost
+        authorizationScopeList[0]:
+          scope: user_info
+          description: read all resources
