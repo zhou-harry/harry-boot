@@ -1,12 +1,10 @@
 server:
-  port: 8080
+  port: 80
   servlet:
-    context-path: /web/
-  tomcat:
-    connection-timeout: 300000
+    context-path: /sso-app/
 spring:
   application:
-    name: harry-boot-web
+    name: harry-boot-sso-app
   redis:
     host: 192.168.148.131
   datasource:
@@ -37,7 +35,6 @@ spring:
           driver-class-name: com.mysql.cj.jdbc.Driver
           type: com.alibaba.druid.pool.DruidDataSource #Druid
 
-
 #Mybatis
 mybatis-plus:
   config-location: classpath:/mybatis/mybatis-config.xml
@@ -46,17 +43,6 @@ logging:
   level:
     com.baomidou: debug
 
-knife4j:
-  # 开启增强配置
-  enable: true
-  # 开启Swagger的Basic认证功能,默认是false
-  basic:
-    enable: true
-    # Basic认证用户名
-    username: admin
-    # Basic认证密码
-    password: 123456
-
 security:
   base:
     enabled: true
@@ -64,10 +50,6 @@ security:
     name: admin
     password: 123456
 harry:
-  sso:
-    api:
-      providerServiceName: harry-boot-sso-app
-      providerServiceUrl: http://localhost/sso-app/
   base:
     security:
       oauth2:
@@ -78,16 +60,16 @@ harry:
       social:
         open: false
     datasource:
-      mapperLocation: com.harry.web.domain.mapper
+      mapperLocation: com.harry.sso.app.domain.mapper
     swagger:
-      title: HARRY BOOT
-      description: 微服务脚手架
+      title: HARRY BOOT SSO
+      description: 统一认证
       version: v1.0.0
-      termsOfServiceUrl: http://localhost:8080/web/
-      base-Package: com.harry.web.domain.rest
+      termsOfServiceUrl: http://localhost${server.servlet.context-path}
+      base-Package: com.harry.sso.app.domain.rest
       authorization:
         name: BearerToken
-        authServers: http://localhost/sso-app/
+        authServers: http://localhost${server.servlet.context-path}
         authorizationScopeList[0]:
           scope: user_info
           description: read all resources

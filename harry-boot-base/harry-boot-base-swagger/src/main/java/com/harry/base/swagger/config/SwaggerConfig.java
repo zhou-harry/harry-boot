@@ -85,6 +85,9 @@ public class SwaggerConfig {
 
     List<GrantType> grantTypes = properties.getAuthorization().getAuthServers().stream().map(
         authServer -> {
+          if (authServer.endsWith("/")){
+            authServer=authServer.substring(0,authServer.lastIndexOf("/"));
+          }
           //授权码模式(authorization_code)
           TokenRequestEndpoint tokenRequestEndpoint = new TokenRequestEndpoint(
               authServer + BASE_OAUTH2_AUTHORIZE, "SWAGGER-CLIENT", "SWAGGER-SECRET");

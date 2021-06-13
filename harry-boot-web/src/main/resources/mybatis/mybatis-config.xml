@@ -11,15 +11,9 @@
     </settings>
 
     <typeAliases>
-        <typeAlias type="com.harry.web.domain.entity.RoleEntity" alias="RoleEntity"/>
-        <typeAlias type="com.harry.web.domain.entity.RestEntity" alias="RestEntity"/>
-        <typeAlias type="com.harry.web.domain.entity.MenuEntity" alias="MenuEntity"/>
     </typeAliases>
 
     <mappers>
-        <mapper resource="mybatis/mappers/RoleMapper.xml"/>
-        <mapper resource="mybatis/mappers/RestMapper.xml"/>
-        <mapper resource="mybatis/mappers/MenuMapper.xml"/>
     </mappers>
 
 

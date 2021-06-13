@@ -1,15 +1,15 @@
 package com.harry.web.domain.rest;
 
 import com.harry.base.common.annotation.ResponseResult;
+import com.harry.base.common.base.result.BaseResult;
 import com.harry.base.common.base.result.ResultCode;
 import com.harry.base.common.exception.CommonException;
-import com.harry.web.domain.entity.UserEntity;
-import com.harry.web.domain.service.UserService;
+import com.harry.sso.api.dto.UserDTO;
+import com.harry.sso.api.feign.RemoteSSOApi;
 import java.util.List;
 import java.util.Random;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,58 +24,61 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
   private static final Random RANDOM = new Random();
-  private final UserService userService;
+
   @Autowired
-  private PasswordEncoder passwordEncoder;
+  private RemoteSSOApi ssoApi;
 
   @GetMapping("master")
-  public List<UserEntity> masterUsers() {
-    return userService.selectMasterUsers();
+  public List<UserDTO> masterUsers() {
+    BaseResult<List<UserDTO>> result = ssoApi.masterUsers();
+    return result.getData();
   }
 
   @GetMapping("slave")
-  public List<UserEntity> slaveUsers() {
-    return userService.selectSlaveUsers();
+  public List<UserDTO> slaveUsers() {
+    BaseResult<List<UserDTO>> result = ssoApi.slaveUsers();
+    return result.getData();
   }
 
   @GetMapping("/lambdaMaster")
-  public List<UserEntity> lambdaMasterUsers() {
-    return userService.selectLambdaMasterUsers();
+  public List<UserDTO> lambdaMasterUsers() {
+    BaseResult<List<UserDTO>> result = ssoApi.lambdaMasterUsers();
+    return result.getData();
   }
 
-  @GetMapping("/lambdaSlave")//fixme 似乎不生效
-  public List<UserEntity> lambdaSlaveUsers() {
+  @GetMapping("/lambdaSlave")
+  public List<UserDTO> lambdaSlaveUsers() {
     throw new CommonException(ResultCode.EXCEPTION);
-//    return userService.selectLambdaSlaveUsers();
+//    BaseResult<List<UserDTO>> result = ssoApi.lambdaSlaveUsers();
+//    return result.getData();
   }
 
   @GetMapping("slaveAnnotation")
-  public List<UserEntity> slaveAnnotationUsers() {
-    return userService.selectSlaveAnnotationUsers();
+  public List<UserDTO> slaveAnnotationUsers() {
+    BaseResult<List<UserDTO>> result = ssoApi.slaveAnnotationUsers();
+    return result.getData();
   }
 
   @PostMapping("add")
-  public UserEntity addUser() {
+  public UserDTO addUser() {
     int nextInt = RANDOM.nextInt();
-    UserEntity user = UserEntity.builder()
+    UserDTO user = UserDTO.builder()
         .username("user_" + nextInt)
         .nickName("用户_" + nextInt)
-        .password(passwordEncoder.encode("harry"))
+        .password("harry")
         .gender(true)
         .avatar("url")
         .salt("harry")
         .status(true)
-        .createBy(10010l)
-        .updateBy(10010l)
         .build();
 
-    userService.addUser(user);
-    return user;
+    BaseResult<UserDTO> result = ssoApi.addUser(user);
+    return result.getData();
   }
 
   @DeleteMapping("/id/{id}")
   public String deleteUser(@PathVariable Long id) {
-    userService.deleteUserById(id);
-    return "成功删除用户" + id;
+    BaseResult<String> result = ssoApi.deleteUser(id);
+    return result.getData();
   }
 }

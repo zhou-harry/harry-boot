@@ -22,6 +22,7 @@
     <module>harry-boot-gataway</module>
     <module>harry-boot-api</module>
     <module>harry-boot-web</module>
+    <module>harry-boot-sso</module>
   </modules>
 
   <properties>
@@ -40,6 +41,7 @@
     <swagger-annotations.version>1.5.20</swagger-annotations.version>
     <guava.version>20.0</guava.version>
     <spring-cloud.version>Hoxton.SR11</spring-cloud.version>
+    <mapstruct.version>1.4.1.Final</mapstruct.version>
   </properties>
 
   <dependencies>
@@ -85,6 +87,20 @@
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
       <version>${guava.version}</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>${mapstruct.version}</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct-processor</artifactId>
+      <version>${mapstruct.version}</version>
       <scope>compile</scope>
     </dependency>
 
