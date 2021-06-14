@@ -34,6 +34,16 @@
       <artifactId>harry-boot-base-common</artifactId>
       <version>${parent.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.social</groupId>
+      <artifactId>spring-social-security</artifactId>
+      <version>1.1.6.RELEASE</version>
+      <scope>compile</scope>
+    </dependency>
 
   </dependencies>
 </project>

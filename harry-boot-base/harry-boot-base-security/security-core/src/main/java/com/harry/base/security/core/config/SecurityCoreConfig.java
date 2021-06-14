@@ -1,15 +1,11 @@
 package com.harry.base.security.core.config;
 
 import com.harry.base.db.config.DatabaseConfig;
-import com.harry.base.security.core.authorize.repository.AuthorizeUrlRepository;
 import com.harry.base.security.core.authorize.server.AuthorizeServer;
 import com.harry.base.security.core.authorize.server.BaseAuthorizeServer;
 import com.harry.base.security.core.properties.SecurityProperties;
-import com.harry.base.security.core.authorize.repository.SecurityAuthorizeUrlRepository;
-import com.harry.base.security.core.service.SecurityUserDetailService;
 import com.harry.base.security.core.validatecode.sms.DefaultSmsCodeSender;
 import com.harry.base.security.core.validatecode.sms.SmsCodeSender;
-import javax.sql.DataSource;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -23,6 +19,8 @@ import org.springframework.security.web.authentication.rememberme.JdbcTokenRepos
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.session.FindByIndexNameSessionRepository;
 import org.springframework.session.security.SpringSessionBackedSessionRegistry;
+
+import javax.sql.DataSource;
 
 @ComponentScan({"com.harry.base.security.core"})
 @EnableConfigurationProperties(SecurityProperties.class)
@@ -76,18 +74,6 @@ public class SecurityCoreConfig {
   @Bean("authorizeServer")
   public AuthorizeServer authorizeServer() {
     return new BaseAuthorizeServer();
-  }
-
-  @Bean("userDetailsService")
-  @ConditionalOnMissingBean(SecurityUserDetailService.class)
-  public SecurityUserDetailService userDetailsService() {
-    return new SecurityUserDetailService();
-  }
-
-  @Bean
-  @ConditionalOnMissingBean(AuthorizeUrlRepository.class)
-  public AuthorizeUrlRepository authorizeUrlRepository() {
-    return new SecurityAuthorizeUrlRepository();
   }
 
   @Bean

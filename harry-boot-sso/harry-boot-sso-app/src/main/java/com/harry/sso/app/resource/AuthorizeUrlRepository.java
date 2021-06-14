@@ -1,29 +1,28 @@
-package com.harry.sso.app.domain.service;
+package com.harry.sso.app.resource;
 
 import com.google.common.collect.Sets;
 import com.harry.base.security.core.authorize.repository.SecurityAuthorizeUrlRepository;
 import com.harry.sso.app.domain.entity.MenuEntity;
 import com.harry.sso.app.domain.entity.RestEntity;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import com.harry.sso.app.domain.service.MenuService;
+import com.harry.sso.app.domain.service.RestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
-public class WebRoleDetailService extends SecurityAuthorizeUrlRepository {
+public class AuthorizeUrlRepository implements SecurityAuthorizeUrlRepository {
 
   @Autowired
   private RestService restService;
   @Autowired
   private MenuService menuService;
-
-  public WebRoleDetailService() {
-    super();
-  }
 
   @Override
   public Set<String> loadUrlByUsername(String username) {

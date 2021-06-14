@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <!--日志打印-->
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
+
+    <typeAliases>
+        <typeAlias type="com.harry.sso.web.domain.entity.RoleEntity" alias="RoleEntity"/>
+        <typeAlias type="com.harry.sso.web.domain.entity.RestEntity" alias="RestEntity"/>
+        <typeAlias type="com.harry.sso.web.domain.entity.MenuEntity" alias="MenuEntity"/>
+    </typeAliases>
+
+    <mappers>
+        <mapper resource="mybatis/mappers/RoleMapper.xml"/>
+        <mapper resource="mybatis/mappers/RestMapper.xml"/>
+        <mapper resource="mybatis/mappers/MenuMapper.xml"/>
+    </mappers>
+
+
+</configuration>

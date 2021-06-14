@@ -3,12 +3,13 @@ package com.harry.sso.api.feign;
 import com.harry.base.common.base.result.BaseResult;
 import com.harry.sso.api.dto.UserDTO;
 import com.harry.sso.api.feign.falback.ClientFallbackFactory;
-import java.util.List;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @FeignClient(
         name = "${harry.sso.api.providerServiceName:}",

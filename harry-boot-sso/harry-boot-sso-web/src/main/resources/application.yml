@@ -1,10 +1,10 @@
 server:
   port: 80
   servlet:
-    context-path: /sso-app/
+    context-path: /
 spring:
   application:
-    name: harry-boot-sso-app
+    name: harry-boot-sso-web
   redis:
     host: 192.168.148.131
   datasource:
@@ -60,13 +60,13 @@ harry:
       social:
         open: false
     datasource:
-      mapperLocation: com.harry.sso.app.domain.mapper
+      mapperLocation: com.harry.sso.web.domain.mapper
     swagger:
-      title: HARRY BOOT SSO APP
-      description: 统一授权
+      title: HARRY BOOT SSO WEB
+      description: 统一认证
       version: v1.0.0
       termsOfServiceUrl: http://localhost${server.servlet.context-path}
-      base-Package: com.harry.sso.app.domain.rest
+      base-Package: com.harry.sso.web.domain.rest
       authorization:
         name: BearerToken
         authServers: http://localhost${server.servlet.context-path}

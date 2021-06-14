@@ -1,6 +1,6 @@
 package com.harry.base.security.core.authorize.server;
 
-import com.harry.base.security.core.authorize.repository.AuthorizeUrlRepository;
+import com.harry.base.security.core.authorize.repository.SecurityAuthorizeUrlRepository;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -24,7 +24,7 @@ public class BaseAuthorizeServer implements AuthorizeServer {
     private AntPathMatcher antPathMatcher = new AntPathMatcher();
 
     @Autowired
-    private AuthorizeUrlRepository authorizeUrlRepository;
+    private SecurityAuthorizeUrlRepository securityAuthorizeUrlRepository;
 
     @Override
     public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
@@ -40,10 +40,10 @@ public class BaseAuthorizeServer implements AuthorizeServer {
         if (principle instanceof UserDetails) {
             //Web端认证后端用户信息格式
             UserDetails userDetails = (UserDetails) principle;
-            urls = authorizeUrlRepository.loadUrlByAuthority(userDetails.getAuthorities());
+            urls = securityAuthorizeUrlRepository.loadUrlByAuthority(userDetails.getAuthorities());
         }else if(principle instanceof String){
             //App端认证后的用户信息格式
-            urls = authorizeUrlRepository.loadUrlByUsername(principle.toString());
+            urls = securityAuthorizeUrlRepository.loadUrlByUsername(principle.toString());
         }
         if (urls == null) {
             return hasPermission;

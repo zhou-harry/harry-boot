@@ -17,16 +17,4 @@ public class HarryWebApplication {
     log.info("open http://localhost/druid/index.html");
   }
 
-//  @Bean
-//  public CorsFilter corsFilter() {
-//    final UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
-//    final CorsConfiguration corsConfiguration = new CorsConfiguration();
-//    corsConfiguration.setAllowCredentials(true);
-//    corsConfiguration.addAllowedOrigin("*");
-//    corsConfiguration.addAllowedHeader("*");
-//    corsConfiguration.addAllowedMethod("*");
-//    urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
-//    return new CorsFilter(urlBasedCorsConfigurationSource);
-//  }
-
 }

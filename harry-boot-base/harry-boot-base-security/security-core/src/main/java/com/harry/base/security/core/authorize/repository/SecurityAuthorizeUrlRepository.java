@@ -1,30 +1,21 @@
 package com.harry.base.security.core.authorize.repository;
 
-import com.google.common.collect.Sets;
+import org.springframework.security.core.GrantedAuthority;
+
 import java.util.Collection;
 import java.util.Set;
-import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
 
 /**
  * @author harry
  * @version 1.0
- * @title: DefaultAuthorizeUrlRepository
- * @description: TODO
- * @date 2019/5/25 19:49
+ * @title: AuthorizeUrlRepository
+ * @description: 加载用户所拥有权限的所有url
+ * @date 2019/5/25 19:30
  */
-@Data
-public class SecurityAuthorizeUrlRepository implements AuthorizeUrlRepository {
+public interface SecurityAuthorizeUrlRepository {
 
-  @Override
-  public Set<String> loadUrlByUsername(String username) {
-    // TODO: 2019/5/25  从数据库查询用户所拥有权限的所有url
-    return Sets.newHashSet();
-  }
+    Set<String> loadUrlByUsername(String username);
 
-  @Override
-  public Set<String> loadUrlByAuthority(Collection<? extends GrantedAuthority> authorities) {
-    // TODO: 2019/5/25  从数据库查询用户所拥有权限的所有url
-    return Sets.newHashSet();
-  }
+    Set<String> loadUrlByAuthority(Collection<? extends GrantedAuthority> authorities);
+
 }

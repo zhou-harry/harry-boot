@@ -1,25 +1,31 @@
-package com.harry.sso.app.domain.service;
+package com.harry.sso.app.resource;
 
 import com.harry.base.security.core.service.SecurityUserDetailService;
 import com.harry.sso.app.domain.entity.RoleEntity;
 import com.harry.sso.app.domain.entity.UserEntity;
+import com.harry.sso.app.domain.service.RoleService;
+import com.harry.sso.app.domain.service.UserService;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.security.SocialUser;
 import org.springframework.social.security.SocialUserDetails;
 import org.springframework.stereotype.Service;
-
-@Service("userDetailsService")
-public class WebUserDetailService extends SecurityUserDetailService {
+@Slf4j
+@Service
+public class UserDetailService implements SecurityUserDetailService {
 
   @Autowired
   private UserService userService;
   @Autowired
   private RoleService roleService;
+  @Autowired
+  private PasswordEncoder passwordEncoder;
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -38,6 +44,20 @@ public class WebUserDetailService extends SecurityUserDetailService {
 
   @Override
   public SocialUserDetails loadUserByUserId(String userId) throws UsernameNotFoundException {
-    return super.loadUserByUserId(userId);
+    log.debug("查询用户信息：userId="+userId);
+
+    //查询数据库用户信息
+
+    //将查询出的的用户信息组装并返回
+    return this.buildUser(userId);
+  }
+
+  private SocialUserDetails buildUser(String userId){
+    SocialUser user = new SocialUser(
+        userId,
+        passwordEncoder.encode("harry"),
+        AuthorityUtils.createAuthorityList("admin")
+    );
+    return user;
   }
 }

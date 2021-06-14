@@ -1,4 +1,4 @@
-package com.harry.sso.app.config;
+package com.harry.base.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -6,6 +6,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+/**
+ * 跨域配置
+ */
 @Configuration
 public class CrosConfig {
 

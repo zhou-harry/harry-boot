@@ -1,14 +1,15 @@
 package com.harry.sso.api.feign.falback;
 
-import static com.harry.base.common.base.result.ResultCode.EXCEPTION;
-
 import com.google.common.collect.Lists;
 import com.harry.base.common.base.result.BaseResult;
 import com.harry.sso.api.dto.UserDTO;
 import com.harry.sso.api.feign.RemoteSSOApi;
-import java.util.List;
 import lombok.Builder;
 import lombok.Data;
+
+import java.util.List;
+
+import static com.harry.base.common.base.result.ResultCode.EXCEPTION;
 
 /**
  * 调用端熔断/降级
